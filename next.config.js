@@ -1,6 +1,6 @@
 module.exports = {
   reactStrictMode: true,
   images: {
-    domains: ['thrangra.sirv.com'],
+    domains: ['cdn.sanity.io'],
   },
 }

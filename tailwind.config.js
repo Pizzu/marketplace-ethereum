@@ -17,7 +17,10 @@ module.exports = {
     extend: {
       colors: {
         "primary": "#FC4754",
-        "secondary": "#10061E"
+        "secondary-dark": "#10061E",
+        "blue": "#5FA5FA",
+        "purple": "#C084FC",
+        "green": "#4ADE80" 
       },
       fontSize: {
         'html-xl': '19.2px',

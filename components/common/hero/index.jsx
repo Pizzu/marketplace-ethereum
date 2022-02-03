@@ -41,7 +41,7 @@ export default function Hero() {
               <div className="absolute w-full h-full bottom-2 left-2 border-2 border-primary/50 rounded-sm"></div>
               <div className="absolute w-full h-full bottom-4 left-4 border-2 border-primary/50 rounded-sm"></div>
               <div className="absolute w-full h-full bottom-6 left-6 border-2 border-primary/50 rounded-sm"></div>
-              <Image className="rounded-sm" src="/hero-image.png" alt="hero-image" layout="fill" objectFit="cover" />
+              <Image className="rounded-sm" src="/hero.jpg" alt="hero-image" layout="fill" objectFit="cover" />
               <div className="absolute w-80 h-80 -bottom-4 -left-4 -z-10 rounded-full bg-primary blur-[120px]"></div>
             </div>
             <div className="absolute bottom-12 left-0 backdrop-blur-[80px] bg-white/20 grid grid-flow-col auto-cols-max gap-6 items-stretch px-4 py-6 rounded-md">

@@ -12,7 +12,7 @@
     }
 
     body {
-        @apply bg-secondary overflow-x-hidden
+        @apply bg-secondary-dark overflow-x-hidden
     }
 }
 @layer components {
