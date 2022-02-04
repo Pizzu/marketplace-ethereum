@@ -9,7 +9,7 @@ export default function Card({ course, index }) {
     green: `border-green/50`,
     purple: `border-purple/50`
   }
-
+  
   const backgroundVariants = {
     primary: `bg-primary`,
     blue: `bg-blue`,

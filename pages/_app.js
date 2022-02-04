@@ -1,5 +1,5 @@
 import '@styles/globals.css'
-import { Navbar } from '@components/common'
+import { Navbar } from '@components/ui/common'
 
 function MyApp({ Component, pageProps }) {
   return(

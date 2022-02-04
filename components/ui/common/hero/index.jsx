@@ -4,7 +4,6 @@ export default function Hero() {
   return (
     <section className="relative">
       <div className="absolute w-80 h-80 top-20 -left-36 -z-10 rounded-full bg-primary blur-[150px]"></div>
-      <div className="absolute w-32 h-32 -bottom-80 left-1/2 -translate-x-2/4 -z-10 rounded-full bg-primary blur-[200px]"></div>
       <div className="absolute w-3 h-3 bottom-32 left-12 -z-10 rounded-full bg-primary/60 blur-[6px]"></div>
       <div className="absolute w-3 h-3 bottom-52 left-[33rem] -z-10 rounded-full bg-primary/60 blur-[6px]"></div>
       <div className="absolute w-3 h-3 top-[22rem] left-[41rem] -z-10 rounded-full bg-primary/60 blur-[4px]"></div>
@@ -16,8 +15,7 @@ export default function Hero() {
             <h1 className="text-7xl font-bold mb-5">Grow your career as a developer</h1>
             <p className="text-lg max-w-sm mb-8">Learn programming and web development the easy way! Get unlimited access to all of our courses</p>
             <div className="grid grid-flow-col auto-cols-max gap-6">
-              <button className="bg-primary text-white font-bold px-6 py-4 rounded-md">Explore Now</button>
-              <button className="text-white font-bold px-6 py-4 rounded-md border-2 border-primary">Connect Wallet</button>
+              <button className="bg-primary text-white font-bold px-6 py-4 rounded-md">Get Started Now</button>
             </div>
             <div className="grid grid-flow-col auto-cols-max gap-6 items-center mt-24">
               <div className="py-2">

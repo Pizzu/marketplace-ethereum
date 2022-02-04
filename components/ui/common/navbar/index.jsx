@@ -9,13 +9,13 @@ export default function Navbar() {
             <button className="text-white text-xl font-bold">Marketplace ETH</button>
           </Link>
           <div className="grid grid-flow-col auto-cols-max gap-7">
-            <Link href="/course" passHref>
+            <Link href="/marketplace" passHref>
               <button className="text-white text-lg font-bold">Marketplace</button>
             </Link>
             <Link href="/blog" passHref>
               <button className="text-white text-lg font-bold">Blog</button>
             </Link>
-            <button className="bg-primary text-white font-bold px-4 py-3 rounded-md">Connect Wallet</button>
+            <button className="text-white font-bold px-4 py-3 rounded-md border-2 border-primary">Connect Wallet</button>
           </div>
         </nav>
       </div>

@@ -15,6 +15,17 @@ module.exports = {
       sm: { 'max': '479px' }
     },
     extend: {
+      keyframes: {
+          rainbow: {
+            '0%, 100%': {backgroundColor: '#FC4754'},
+            '25%': {backgroundColor: '#5FA5FA'},
+            '50%': {backgroundColor: '#C084FC'},
+            '75%': {backgroundColor: '#4ADE80'}
+          }
+      },
+      animation: {
+        rainbow: 'rainbow 60s ease-in-out infinite'
+      },
       colors: {
         "primary": "#FC4754",
         "secondary-dark": "#10061E",
