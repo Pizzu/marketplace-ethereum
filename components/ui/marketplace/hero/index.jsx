@@ -1,4 +1,4 @@
-import Image from "next/image"
+import { WalletBar } from "@components/ui/web3"
 
 export default function Hero() {
   return (
@@ -17,28 +17,8 @@ export default function Hero() {
             <div className="grid grid-flow-col auto-cols-max gap-6">
             </div>
           </div>
-          <div className="relative">
-            <div className="relative ml-auto max-w-lg">
-              <div className="backdrop-blur-[80px] bg-white/20 grid grid-flow-row gap-6 px-4 py-6 rounded-md">
-                <div>
-                  <p className="text-xl font-bold text-white/70 mb-2">Current Eth Price</p>
-                  <p className="text-xl text-white">$3058</p>
-                </div>
-                <div>
-                  <p className="text-xl font-bold text-white/70 mb-2">Course Price</p>
-                  <p className="text-xl text-white">$15</p>
-                </div>
-                <div>
-                  <p className="text-xl font-bold text-white/70 mb-2">My Address</p>
-                  <p className="text-xl text-white">Not connected</p>
-                </div>
-                <div>
-                  <p className="text-xl font-bold text-white/70 mb-2">Currently on</p>
-                  <p className="text-xl text-white">Ropsten Test Network</p>
-                </div>
-              </div>
-              <div className="absolute w-80 h-80 -bottom-4 -left-4 -z-10 rounded-full bg-primary blur-[160px] animate-rainbow"></div>
-            </div>
+          <div>
+            <WalletBar />
           </div>
         </div>
       </div>

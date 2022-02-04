@@ -3,7 +3,7 @@ import { CourseList, CourseCard } from "@components/ui/course"
 import { sanityClient } from "@lib/sanity"
 import { coursesQuery } from "@lib/query"
 
-export default function Marketplace({ courses, featuredCourse }) {
+export default function Marketplace({ courses }) {
   return(
     <>
       <MarketplaceHero />
