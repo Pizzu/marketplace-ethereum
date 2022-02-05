@@ -1,8 +1,8 @@
 import { MarketplaceHero } from "@components/ui/marketplace"
 import { CourseList, CourseCard } from "@components/ui/course"
 import { MarketplaceHeader } from "@components/ui/marketplace"
-import { sanityClient } from "@lib/sanity"
-import { coursesQuery } from "@lib/query"
+import { sanityClient } from "@lib/studio/sanity"
+import { coursesQuery } from "@lib/studio/query"
 
 export default function Marketplace({ courses }) {
   return(

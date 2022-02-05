@@ -1,6 +1,6 @@
-import { sanityClient } from "@lib/sanity";
-import { courseQuery, coursesPath } from "@lib/query";
-import { CourseHero, CourseKeyPoints, Curriculum } from "@components/ui/course";
+import { sanityClient } from "@lib/studio/sanity";
+import { courseQuery, coursesPath } from "@lib/studio/query";
+import { CourseHero, CourseKeyPoints, CourseCurriculum } from "@components/ui/course";
 
 export default function CoursePage({ course }) {
 
@@ -8,7 +8,7 @@ export default function CoursePage({ course }) {
     <>
       <CourseHero course={course} />
       <CourseKeyPoints />
-      <Curriculum />
+      <CourseCurriculum />
     </>
   )
 }

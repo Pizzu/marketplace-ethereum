@@ -1,23 +1,9 @@
 import Image from "next/image"
 import Link from "next/link"
-import { urlFor } from "@lib/sanity"
+import { urlFor } from "@lib/studio/sanity"
+import { borderVariants, backgroundVariants } from "@lib/utils/variations"
 
 export default function Card({ course, index }) {
-
-  const borderVariants = {
-    primary: "border-primary/50",
-    blue: "border-blue/50",
-    green: "border-green/50",
-    purple: "border-purple/50"
-  }
-
-  const backgroundVariants = {
-    primary: "bg-primary",
-    blue: "bg-blue",
-    green: "bg-green",
-    purple: "bg-purple"
-  }
-
   return (
     <div className={`${index % 2 == 0 ? "pl-6" : "pr-6"} relative mb-14`}>
       <div className={`relative w-[26rem] h-[32rem] ${index % 2 == 0 ? "ml-0" : "ml-auto"}`}>
