@@ -3,12 +3,11 @@ import { courseQuery, coursesPath } from "@lib/studio/query";
 import { CourseHero, CourseKeyPoints, CourseCurriculum } from "@components/ui/course";
 
 export default function CoursePage({ course }) {
-
   return (
     <>
       <CourseHero course={course} />
-      <CourseKeyPoints />
-      <CourseCurriculum />
+      <CourseKeyPoints skills={course.skills} color={course.color} />
+      <CourseCurriculum lectures={course.lectures} color={course.color} />
     </>
   )
 }

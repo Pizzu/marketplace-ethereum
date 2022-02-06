@@ -25,7 +25,7 @@ export default function Card({ course, index }) {
           <p className="text-xl text-white/75">{course.description.substring(0, 75)}...</p>
         </div>
         <div>
-          <button className="bg-primary text-white font-bold h-full px-6 py-4 rounded-md">Buy Course</button>
+          <button className={`${backgroundVariants[course.color]} text-white font-bold h-full px-6 py-4 rounded-md`}>Buy Course</button>
         </div>
       </div>
     </div>

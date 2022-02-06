@@ -15,7 +15,7 @@ export default function Navbar() {
             <Link href="/blog" passHref>
               <button className="text-white text-lg font-bold">Blog</button>
             </Link>
-            <button className="text-white font-bold px-4 py-3 rounded-md border-2 border-primary">Connect Wallet</button>
+            <button className="text-white font-bold px-4 py-3 rounded-md border-2 border-white">Connect Wallet</button>
           </div>
         </nav>
       </div>
