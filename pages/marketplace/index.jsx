@@ -7,8 +7,8 @@ import { useWeb3 } from "@components/providers"
 
 export default function Marketplace({ courses }) {
 
-  // const data = useWeb3()
-  // console.log(data)
+  const data = useWeb3()
+  console.log(data)
   return(
     <>
       <MarketplaceHero />
