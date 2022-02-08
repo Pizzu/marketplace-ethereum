@@ -43,7 +43,7 @@ export default function Hero() {
               <Image className="rounded-sm" src="/hero.jpg" alt="hero-image" layout="fill" objectFit="cover" />
               <div className="absolute w-80 h-80 -bottom-4 -left-4 -z-10 rounded-full bg-primary blur-[120px]"></div>
             </div>
-            <div className="absolute bottom-12 left-0 backdrop-blur-[80px] bg-white/20 grid grid-flow-col auto-cols-max gap-6 items-stretch px-4 py-6 rounded-md">
+            <div className="absolute bottom-12 left-0 backdrop-blur-[80px] bg-black/20 grid grid-flow-col gap-6 items-stretch px-4 py-6 rounded-md border-2 border-white/40">
               <EthRates />
               <div>
                 <button className="bg-primary text-white font-bold h-full px-6 py-4 rounded-md">How to Shop</button>
