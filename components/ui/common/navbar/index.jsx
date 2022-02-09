@@ -1,11 +1,13 @@
 import { useWeb3 } from "@components/providers"
 import Link from "next/link"
 import { Button } from "@components/ui/common"
+import { useAccount } from "@components/web3/hooks/useAccount"
 
 export default function Navbar() {
 
-  const { isWeb3Loaded, isLoading, connect } = useWeb3()
-
+  const { web3, isLoading, connect } = useWeb3()
+  const { account } = useAccount()
+  
   return (
     <header>
       <div className="container pt-8 pb-0">
@@ -22,8 +24,11 @@ export default function Navbar() {
             </Link>
             {isLoading ?
               <Button isDisabled={ true } className="px-4 py-3 text-white border-2 border-white">Connecting...</Button>
-              : isWeb3Loaded ?
-                <Button onClick={ connect } className="px-4 py-3 text-white border-2 border-white">Connect Wallet</Button>
+              : web3 ?
+                account ?
+                  <Button className="px-4 py-3 text-white border-2 border-white">Connected</Button>
+                  :
+                  <Button onClick={ connect } className="px-4 py-3 text-white border-2 border-white">Connect Wallet</Button>
                 :
                 <Button onClick={ () => window.open("https://metamask.io/download/", "_blank") } className="px-4 py-3 text-white border-2 border-white">Install Metamask</Button>
             }
