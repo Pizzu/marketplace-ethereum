@@ -7,7 +7,7 @@ export default function Navbar() {
 
   const { web3, isLoading, connect } = useWeb3()
   const { account } = useAccount()
-  
+
   return (
     <header>
       <div className="container pt-8 pb-0">
@@ -25,8 +25,8 @@ export default function Navbar() {
             {isLoading ?
               <Button isDisabled={ true } className="px-4 py-3 text-white border-2 border-white">Connecting...</Button>
               : web3 ?
-                account ?
-                  <Button className="px-4 py-3 text-white border-2 border-white">Connected</Button>
+                account.data ?
+                  <Button className="px-4 py-3 text-white border-2 border-white">Connected {account.isAdmin && "as Admin"}</Button>
                   :
                   <Button onClick={ connect } className="px-4 py-3 text-white border-2 border-white">Connect Wallet</Button>
                 :

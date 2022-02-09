@@ -11,7 +11,7 @@ export default function WalletBar() {
           <EthRates />
           <div>
             <p className="text-xl font-bold text-white/70 mb-2">Your Address</p>
-            <p className="text-xl text-white">{ account ? account : "Not connected" }</p>
+            <p className="text-xl text-white">{ account.data ? account.data : "Not connected" }</p>
           </div>
           <div>
             <p className="text-xl font-bold text-white/70 mb-2">Currently on</p>

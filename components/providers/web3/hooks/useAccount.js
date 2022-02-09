@@ -1,23 +1,24 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { useEffect, useState } from "react"
+import { useEffect } from "react"
+import useSWR from "swr"
+
+const adminAddresses = {
+  "0x07a8c5103fC59e260d0dd0333309C5224FA9F546": true
+}
 
 export const handler = (web3, provider) => () => {
-  const [account, setAccount] = useState(null)
-
-  useEffect(() => {
-    const getAccount = async () => {
+  const { data, mutate, ...rest } = useSWR(() => 
+    web3 ? "web3/accounts" : null,
+    async () => {
       const accounts = await web3.eth.getAccounts()
-      setAccount(accounts[0])
+      return accounts[0] ?? null
     }
-
-    web3 && getAccount()
-    
-  }, [web3])
+  )
 
   useEffect(() => {
     const setAccountListener = () => {
       provider.on("accountsChanged", (accounts) => {
-        setAccount(accounts[0])
+        mutate(accounts[0] ?? null)
       })
     }
 
@@ -26,6 +27,11 @@ export const handler = (web3, provider) => () => {
   }, [provider])
 
   return {
-    account
+    account: { 
+      data, 
+      isAdmin: (data && adminAddresses[data]) ?? false,
+      mutate, 
+      ...rest 
+    }
   }
 }
