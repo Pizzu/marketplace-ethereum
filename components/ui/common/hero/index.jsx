@@ -1,5 +1,6 @@
 import Image from "next/image"
 import { EthRates } from "@components/ui/web3"
+import { Button } from "@components/ui/common"
 
 export default function Hero() {
   return (
@@ -16,7 +17,7 @@ export default function Hero() {
             <h1 className="text-7xl font-bold mb-5">Grow your career as a developer</h1>
             <p className="text-lg max-w-sm mb-8">Learn programming and web development the easy way! Get unlimited access to all of our courses</p>
             <div className="grid grid-flow-col auto-cols-max gap-6">
-              <button className="bg-primary text-white font-bold px-6 py-4 rounded-md">Get Started Now</button>
+              <Button className="bg-primary text-white">Get Started Now</Button>
             </div>
             <div className="grid grid-flow-col auto-cols-max gap-6 items-center mt-24">
               <div className="py-2">
@@ -46,7 +47,7 @@ export default function Hero() {
             <div className="absolute bottom-12 left-0 backdrop-blur-[80px] bg-black/20 grid grid-flow-col gap-6 items-stretch px-4 py-6 rounded-md border-2 border-white/40">
               <EthRates />
               <div>
-                <button className="bg-primary text-white font-bold h-full px-6 py-4 rounded-md">How to Shop</button>
+                <Button className="bg-primary text-white">How to Shop</Button>
               </div>
             </div>
           </div>

@@ -2,6 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { urlFor } from "@lib/studio/sanity"
 import { borderVariants, backgroundVariants } from "@lib/utils/variations"
+import { Button } from "@components/ui/common"
 
 export default function Card({ course, index }) {
   return (
@@ -25,7 +26,7 @@ export default function Card({ course, index }) {
           <p className="text-xl text-white/75">{course.description.substring(0, 75)}...</p>
         </div>
         <div>
-          <button className={`${backgroundVariants[course.color]} text-white font-bold h-full px-6 py-4 rounded-md`}>Buy Course</button>
+          <Button className={`${backgroundVariants[course.color]} text-white`}>Buy Course</Button>
         </div>
       </div>
     </div>
