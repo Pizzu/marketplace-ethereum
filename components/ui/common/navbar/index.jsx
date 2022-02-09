@@ -1,12 +1,10 @@
 import { useWeb3 } from "@components/providers"
 import Link from "next/link"
 import { Button } from "@components/ui/common"
-import { useRouter } from "next/router"
 
 export default function Navbar() {
 
   const { isWeb3Loaded, isLoading, connect } = useWeb3()
-  const router = useRouter()
 
   return (
     <header>
@@ -27,7 +25,7 @@ export default function Navbar() {
               : isWeb3Loaded ?
                 <Button onClick={ connect } className="px-4 py-3 text-white border-2 border-white">Connect Wallet</Button>
                 :
-                <Button onClick={ () => router.push("https://metamask.io/download/") } className="px-4 py-3 text-white border-2 border-white">Install Metamask</Button>
+                <Button onClick={ () => window.open("https://metamask.io/download/", "_blank") } className="px-4 py-3 text-white border-2 border-white">Install Metamask</Button>
             }
           </div>
         </nav>
