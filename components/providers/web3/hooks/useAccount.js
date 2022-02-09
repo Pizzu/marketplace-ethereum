@@ -1,7 +1,7 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useEffect, useState } from "react"
 
-export const handler = (web3) => () => {
+export const handler = (web3, provider) => () => {
   const [account, setAccount] = useState(null)
 
   useEffect(() => {
@@ -13,6 +13,17 @@ export const handler = (web3) => () => {
     web3 && getAccount()
     
   }, [web3])
+
+  useEffect(() => {
+    const setAccountListener = () => {
+      provider.on("accountsChanged", (accounts) => {
+        setAccount(accounts[0])
+      })
+    }
+
+    provider && setAccountListener()
+
+  }, [provider])
 
   return {
     account

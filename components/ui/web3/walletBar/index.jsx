@@ -10,7 +10,7 @@ export default function WalletBar() {
         <div className="backdrop-blur-[80px] bg-black/20 grid grid-flow-row gap-6 px-4 py-6 rounded-md border-2 border-white/40">
           <EthRates />
           <div>
-            <p className="text-xl font-bold text-white/70 mb-2">My Address</p>
+            <p className="text-xl font-bold text-white/70 mb-2">Your Address</p>
             <p className="text-xl text-white">{ account ? account : "Not connected" }</p>
           </div>
           <div>

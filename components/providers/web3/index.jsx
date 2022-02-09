@@ -28,7 +28,7 @@ export default function Web3Provider({ children }) {
     const { web3, provider } = web3Api
     return {
       ...web3Api,
-      hooks: setupHooks(web3),
+      hooks: setupHooks(web3, provider),
       connect: async () => {
         if (provider) {
           await web3Api.web3.eth.requestAccounts()
