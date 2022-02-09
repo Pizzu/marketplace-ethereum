@@ -3,7 +3,7 @@ import { useEffect } from "react"
 import useSWR from "swr"
 
 const adminAddresses = {
-  "0x07a8c5103fC59e260d0dd0333309C5224FA9F546": true
+  "0x8c3591334738ba86fc54577cca7155439b2121f9c2ff0348248ec180ea66342e": true
 }
 
 export const handler = (web3, provider) => () => {
@@ -16,20 +16,19 @@ export const handler = (web3, provider) => () => {
   )
 
   useEffect(() => {
-    const setAccountListener = () => {
-      provider.on("accountsChanged", (accounts) => {
-        mutate(accounts[0] ?? null)
-      })
-    }
+    const mutator = (accounts) => mutate(accounts[0] ?? null)
+    provider?.on("accountsChanged", mutator)
 
-    provider && setAccountListener()
+    return () => {
+      provider?.removeListener("accountsChanged", mutator)
+    }
 
   }, [provider])
 
   return {
     account: { 
       data, 
-      isAdmin: (data && adminAddresses[data]) ?? false,
+      isAdmin: (data && adminAddresses[web3.utils.keccak256(data)]) ?? false,
       mutate, 
       ...rest 
     }
