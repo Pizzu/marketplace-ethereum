@@ -1,5 +1,5 @@
 import { EthRates } from "@components/ui/web3"
-import { useAccount } from "@components/web3/hooks/useAccount"
+import { useAccount } from "@components/hooks/web3/useAccount"
 
 export default function WalletBar() {
 
