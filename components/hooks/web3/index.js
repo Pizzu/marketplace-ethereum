@@ -1,5 +1,13 @@
 import { useHooks } from "@components/providers/web3";
 
+
+const enhanceHooks = (hookRes) => {
+  return {
+    ...hookRes,
+    isInitialized: (hookRes.data || hookRes.error) ? true : false
+  }
+}
+
 export const useAccount = () => {
   const accountHookRes = enhanceHooks(useHooks(hooks => hooks.useAccount)())
   return {
@@ -14,10 +22,18 @@ export const useNetwork = () => {
   }
 }
 
+export const useWalletInfo = () => {
+  const { account } = useAccount()
+  const { network } = useNetwork()
 
-const enhanceHooks = (hookRes) => {
+  const isConnecting = !account.isInitialized && !network.isInitialized
+  // We consider our wallet valid when it has an address and the network is set to the supported one
+  const isWalletConnected = account.data && network.isSupported
+
   return {
-    ...hookRes,
-    isInitialized: (hookRes.data || hookRes.error) ? true : false
+    account,
+    network,
+    isConnecting,
+    isWalletConnected
   }
 }

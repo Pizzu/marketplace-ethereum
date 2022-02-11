@@ -1,12 +1,11 @@
 import { EthRates } from "@components/ui/web3"
-import { useAccount, useNetwork } from "@components/hooks/web3"
+import { useWalletInfo } from "@components/hooks/web3"
 import { useWeb3 } from "@components/providers"
 
 export default function WalletBar() {
 
   const { requireInstall } = useWeb3()
-  const { account } = useAccount()
-  const { network } = useNetwork()
+  const { account, network } = useWalletInfo()
 
   return (
     <div className="relative ml-auto max-w-xl">

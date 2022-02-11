@@ -24,7 +24,7 @@ export const handler = (web3, provider) => () => {
       return currentNetwork
     }
   )
-  
+
   useEffect(() => {
     const mutator = (chainId) => mutate(NETWORKS[parseInt(chainId, 16)])
     provider?.on("chainChanged", mutator)

@@ -3,8 +3,15 @@ import { CourseList, CourseCard } from "@components/ui/course"
 import { MarketplaceHeader } from "@components/ui/marketplace"
 import { sanityClient } from "@lib/studio/sanity"
 import { coursesQuery } from "@lib/studio/query"
+import { useWalletInfo } from "@components/hooks/web3"
+import { useWeb3 } from "@components/providers"
 
 export default function Marketplace({ courses }) {
+
+  const { requireInstall } = useWeb3()
+  const { isConnecting, isWalletConnected, network } = useWalletInfo()
+  const courseWalletInfo = { requireInstall, isConnecting, isWalletConnected, network }
+
   return(
     <>
       <MarketplaceHero />
@@ -13,7 +20,7 @@ export default function Marketplace({ courses }) {
           <MarketplaceHeader />
           <CourseList courses={courses}>
             {
-              (course, index) => <CourseCard key={course._id} course={course} index={index}/>
+              (course, index) => <CourseCard key={course._id} course={course} index={index} courseWalletInfo={courseWalletInfo}/>
             }
           </CourseList>
         </div>

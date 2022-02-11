@@ -5,7 +5,7 @@ import { useAccount } from "@components/hooks/web3"
 
 export default function Navbar() {
 
-  const { isLoading, connect, requireInstall } = useWeb3()
+  const { web3, isLoading, connect } = useWeb3()
   const { account } = useAccount()
 
   return (
@@ -24,7 +24,7 @@ export default function Navbar() {
             </Link>
             {isLoading ?
               <Button isDisabled={true} className="px-4 py-3 text-white border-2 border-white">Connecting...</Button>
-              : !requireInstall ?
+              : web3 ?
                 account.data ?
                   <Button className="px-4 py-3 text-white border-2 border-white">Connected {account.isAdmin && "as Admin"}</Button>
                   :

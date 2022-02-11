@@ -4,7 +4,10 @@ import { urlFor } from "@lib/studio/sanity"
 import { borderVariants, backgroundVariants } from "@lib/utils/variations"
 import { Button } from "@components/ui/common"
 
-export default function Card({ course, index }) {
+export default function Card({ course, index, courseWalletInfo }) {
+
+  const { requireInstall, isConnecting, isWalletConnected, network } = courseWalletInfo
+
   return (
     <div className={`${index % 2 == 0 ? "pl-6" : "pr-6"} relative mb-14`}>
       <div className={`relative w-[26rem] h-[32rem] ${index % 2 == 0 ? "ml-0" : "ml-auto"}`}>
@@ -26,7 +29,23 @@ export default function Card({ course, index }) {
           <p className="text-xl text-white/75">{course.description.substring(0, 75)}...</p>
         </div>
         <div>
-          <Button className={`${backgroundVariants[course.color]} text-white`}>Buy Course</Button>
+          {requireInstall ?
+            <div>
+              <Button onClick={() => window.open("https://metamask.io/download/", "_blank")} className={`${backgroundVariants[course.color]} text-white`}>Install Metamask</Button>
+              <p className="text-lg text-primary font-bold mt-3">You need to download metamask in order to purchase this course</p>
+            </div>
+            :
+            isConnecting ?
+              <Button isDisabled={true} className={`${backgroundVariants[course.color]} text-white`}>Loading...</Button>
+              :
+              isWalletConnected ?
+                <Button className={`${backgroundVariants[course.color]} text-white`}>Buy Course</Button>
+                :
+                <div>
+                  <Button isDisabled={true} className={`${backgroundVariants[course.color]} text-white`}>Buy Course</Button>
+                  <p className="text-lg text-primary font-bold mt-3">Make sure you are connected to the {network.target} and you are logged into your metamask account</p>
+                </div>
+          }
         </div>
       </div>
     </div>
