@@ -4,7 +4,7 @@ import { urlFor } from "@lib/studio/sanity"
 import { borderVariants, backgroundVariants } from "@lib/utils/variations"
 import { Button } from "@components/ui/common"
 
-export default function Card({ course, index, courseWalletInfo }) {
+export default function Card({ course, index, courseWalletInfo, onSelectedCourse }) {
 
   const { requireInstall, isConnecting, isWalletConnected, network } = courseWalletInfo
 
@@ -39,7 +39,7 @@ export default function Card({ course, index, courseWalletInfo }) {
               <Button isDisabled={true} className={`${backgroundVariants[course.color]} text-white`}>Loading...</Button>
               :
               isWalletConnected ?
-                <Button className={`${backgroundVariants[course.color]} text-white`}>Buy Course</Button>
+                <Button onClick={() => onSelectedCourse(course)} className={`${backgroundVariants[course.color]} text-white`}>Buy Course</Button>
                 :
                 <div>
                   <Button isDisabled={true} className={`${backgroundVariants[course.color]} text-white`}>Buy Course</Button>

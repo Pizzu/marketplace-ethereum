@@ -26,7 +26,7 @@ export const useWalletInfo = () => {
   const { account } = useAccount()
   const { network } = useNetwork()
 
-  const isConnecting = !account.isInitialized && !network.isInitialized
+  const isConnecting = !account.isInitialized && !network.isInitializeds
   // We consider our wallet valid when it has an address and the network is set to the supported one
   const isWalletConnected = account.data && network.isSupported
 
