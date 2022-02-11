@@ -7,7 +7,7 @@ const adminAddresses = {
 }
 
 export const handler = (web3, provider) => () => {
-  const { data, mutate, ...rest } = useSWR(() => 
+  const { data, error, mutate, ...rest } = useSWR(() => 
     web3 ? "web3/accounts" : null,
     async () => {
       const accounts = await web3.eth.getAccounts()
@@ -26,11 +26,10 @@ export const handler = (web3, provider) => () => {
   }, [provider])
 
   return {
-    account: { 
-      data, 
-      isAdmin: (data && adminAddresses[web3.utils.keccak256(data)]) ?? false,
-      mutate, 
-      ...rest 
-    }
+    data, 
+    error,
+    isAdmin: (data && adminAddresses[web3.utils.keccak256(data)]) ?? false,
+    mutate, 
+    ...rest 
   }
 }
