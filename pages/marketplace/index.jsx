@@ -18,7 +18,6 @@ export default function Marketplace({ courses }) {
   const onSelectedCourse = (course) => setSelectedCourse(course)
   const resetSelectedCourse = () => setSelectedCourse(null)
 
-
   return (
     <>
       <MarketplaceHero />
@@ -36,7 +35,6 @@ export default function Marketplace({ courses }) {
         selectedCourse &&
         <OrderModal course={selectedCourse} onClose={resetSelectedCourse} />
       }
-
     </>
   )
 }
