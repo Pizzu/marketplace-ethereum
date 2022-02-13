@@ -11,12 +11,17 @@ export const handler = (web3, provider) => () => {
     web3 ? "web3/accounts" : null,
     async () => {
       const accounts = await web3.eth.getAccounts()
-      return accounts[0] ?? null
+      
+      if (accounts.length === 0) {
+        throw new Error("Cannot retrive account. Please connect account on Metamask")
+      }
+
+      return accounts[0]
     }
   )
 
   useEffect(() => {
-    const mutator = (accounts) => mutate(accounts[0] ?? null)
+    const mutator = (accounts) => mutate(accounts[0])
     provider?.on("accountsChanged", mutator)
 
     return () => {

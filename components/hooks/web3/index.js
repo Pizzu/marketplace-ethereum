@@ -4,7 +4,7 @@ import { useHooks } from "@components/providers/web3";
 const enhanceHooks = (hookRes) => {
   return {
     ...hookRes,
-    isInitialized: (hookRes.data || hookRes.error) ? true : false
+    isInitialized: !!(hookRes.data || hookRes.error)
   }
 }
 
