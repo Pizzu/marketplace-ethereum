@@ -1,5 +1,5 @@
 import { CourseList, CourseCard } from "@components/ui/course"
-import { MarketplaceHeader } from "@components/ui/marketplace"
+import { MarketplaceNavigation } from "@components/ui/marketplace"
 import { OrderModal } from "@components/ui/order"
 import { useWalletInfo } from "@components/hooks/web3"
 import { useWeb3 } from "@components/providers"
@@ -19,7 +19,7 @@ export default function Store({ courses }) {
     <>
       <section className="relative">
         <div className="container">
-          <MarketplaceHeader />
+          <MarketplaceNavigation />
           <CourseList courses={courses}>
             {
               (course, index) => <CourseCard key={course._id} course={course} index={index} courseWalletInfo={courseWalletInfo} onSelectedCourse={onSelectedCourse} />

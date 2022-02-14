@@ -24,7 +24,7 @@ export default function Card({ course, index, courseWalletInfo, onSelectedCourse
         </div>
         <div>
           <Link href={`/courses/${course.slug.current}`} passHref>
-            <button className="text-xl font-bold text-white mb-2">{course.title}</button>
+            <a className="text-xl font-bold text-white mb-2">{course.title}</a>
           </Link>
           <p className="text-xl text-white/75">{course.description.substring(0, 75)}...</p>
         </div>

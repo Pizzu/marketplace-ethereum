@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import useSWR from "swr"
-import { useEffect } from "react"
+import { useCallback, useEffect } from "react"
 
 
 const NETWORKS = {
@@ -34,6 +34,13 @@ export const handler = (web3, provider) => () => {
     }
 
   }, [provider])
+  
+  const switchToTargetNetwork = useCallback(async () => {
+    await provider.request({
+      method: 'wallet_switchEthereumChain',
+      params: [{ chainId: "0x3"}],
+    });
+  }, [provider])
 
   return {
     data,
@@ -41,6 +48,7 @@ export const handler = (web3, provider) => () => {
     mutate,
     target: targetNetwork,
     isSupported: data === targetNetwork,
+    switchToTargetNetwork,
     ...rest
   }
 }

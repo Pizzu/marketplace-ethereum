@@ -1,6 +1,7 @@
 import { EthRates } from "@components/ui/web3"
 import { useWalletInfo } from "@components/hooks/web3"
 import { useWeb3 } from "@components/providers"
+import { Button } from "@components/ui/common"
 
 export default function WalletBar() {
 
@@ -28,6 +29,7 @@ export default function WalletBar() {
                 <div>
                   <p className="text-xl text-white">{network.data}</p>
                   <p className="text-xl text-primary font-bold mt-1 mb-3">Not supported network - Switch to {network.target}</p>
+                  <Button onClick={network.switchToTargetNetwork} className={`bg-primary text-white`}>Switch to target network</Button>
                 </div>
             )
           }

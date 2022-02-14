@@ -1,15 +1,17 @@
-export default function Breadcrumbs() {
+import Link from "next/link"
+
+export default function Breadcrumbs({ items }) {
+  console.log(items)
   return (
-    <div className="flex divide-x">
-      <div className="pr-4">
-        <a className="text-white text-xl" href="#">Buy</a>
-      </div>
-      <div className="px-4">
-        <a className="text-white text-xl" href="#">My Orders</a>
-      </div>
-      <div className="pl-4">
-        <a className="text-white text-xl" href="#">All Orders</a>
-      </div>
+    <div className="grid grid-flow-col divide-x mr-[-1rem]">
+      {items.map((navLink, index) => (
+        <div key={index} className="px-4">
+          <Link href={navLink.href} passHref>
+            <a className="text-white text-xl">{navLink.value}</a>
+          </Link>
+        </div>
+      ))
+      }
     </div>
   )
 }

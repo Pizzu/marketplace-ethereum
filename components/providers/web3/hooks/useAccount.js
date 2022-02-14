@@ -7,7 +7,7 @@ const adminAddresses = {
 }
 
 export const handler = (web3, provider) => () => {
-  const { data, error, mutate, ...rest } = useSWR(() => 
+  const { data, error, isValidating, mutate, ...rest } = useSWR(() => 
     web3 ? "web3/accounts" : null,
     async () => {
       const accounts = await web3.eth.getAccounts()
@@ -17,7 +17,8 @@ export const handler = (web3, provider) => () => {
       }
 
       return accounts[0]
-    }
+    },
+    { shouldRetryOnError: false }
   )
 
   useEffect(() => {
