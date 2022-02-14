@@ -1,14 +1,13 @@
-import Link from "next/link"
+import { ActiveLink } from "@components/ui/common"
 
 export default function Breadcrumbs({ items }) {
-  console.log(items)
   return (
     <div className="grid grid-flow-col divide-x mr-[-1rem]">
       {items.map((navLink, index) => (
         <div key={index} className="px-4">
-          <Link href={navLink.href} passHref>
+          <ActiveLink href={navLink.href}>
             <a className="text-white text-xl">{navLink.value}</a>
-          </Link>
+          </ActiveLink>
         </div>
       ))
       }
