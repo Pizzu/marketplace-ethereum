@@ -6,7 +6,7 @@ export default function Breadcrumbs({ items }) {
       {items.map((navLink, index) => (
         <div key={index} className="px-4">
           <ActiveLink href={navLink.href}>
-            <a className="text-white text-xl">{navLink.value}</a>
+            <a>{navLink.value}</a>
           </ActiveLink>
         </div>
       ))

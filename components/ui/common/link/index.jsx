@@ -7,7 +7,9 @@ export default function ActiveLink({ children, ...props }) {
   let className = children.props.className || ""
   
   if (pathname === props.href) {
-    className = `${className} text-white font-bold`
+    className = `${className} text-white font-bold text-xl`
+  } else {
+    className = `${className} text-white/70 text-xl`
   }
 
   return (
