@@ -14,6 +14,12 @@ export default function Store({ courses }) {
   const [selectedCourse, setSelectedCourse] = useState(null)
   const onSelectedCourse = (course) => setSelectedCourse(course)
   const resetSelectedCourse = () => setSelectedCourse(null)
+ 
+  const purchaseCourse = ({course, email, price}) => {
+    console.log(course),
+    console.log(email)
+    console.log(price)
+  }
 
   return (
     <>
@@ -29,7 +35,7 @@ export default function Store({ courses }) {
       </section>
       {
         selectedCourse &&
-        <OrderModal course={selectedCourse} resetCourse={resetSelectedCourse} />
+        <OrderModal course={selectedCourse} purchaseCourse={purchaseCourse} resetCourse={resetSelectedCourse} />
       }
     </>
   )
