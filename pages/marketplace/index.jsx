@@ -2,7 +2,7 @@ import { MarketplaceHero, MarketplaceStore } from "@components/ui/marketplace"
 import { sanityClient } from "@lib/studio/sanity"
 import { coursesQuery } from "@lib/studio/query"
 
-export default function Marketplace({ courses }) {
+export default function MarketplacePage({ courses }) {
   return (
     <>
       <MarketplaceHero />

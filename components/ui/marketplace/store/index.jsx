@@ -5,19 +5,19 @@ import { useWalletInfo } from "@components/hooks/web3"
 import { useWeb3 } from "@components/providers"
 import { useState } from "react"
 
-export default function Store({ courses }) {
+export default function MarketplaceStore({ courses }) {
 
   const { requireInstall } = useWeb3()
   const { isConnecting, isWalletConnected, network } = useWalletInfo()
   const courseWalletInfo = { requireInstall, isConnecting, isWalletConnected, network }
-  
+
   const [selectedCourse, setSelectedCourse] = useState(null)
   const onSelectedCourse = (course) => setSelectedCourse(course)
   const resetSelectedCourse = () => setSelectedCourse(null)
- 
-  const purchaseCourse = ({course, email, price}) => {
+
+  const purchaseCourse = ({ course, email, price }) => {
     console.log(course),
-    console.log(email)
+      console.log(email)
     console.log(price)
   }
 
@@ -26,11 +26,13 @@ export default function Store({ courses }) {
       <section className="relative">
         <div className="container">
           <MarketplaceNavigation />
-          <CourseList courses={courses}>
-            {
-              (course, index) => <CourseCard key={course._id} course={course} index={index} courseWalletInfo={courseWalletInfo} onSelectedCourse={onSelectedCourse} />
-            }
-          </CourseList>
+          <div className="grid grid-cols-2 gap-24">
+            <CourseList courses={courses}>
+              {
+                (course, index) => <CourseCard key={course._id} course={course} index={index} courseWalletInfo={courseWalletInfo} onSelectedCourse={onSelectedCourse} />
+              }
+            </CourseList>
+          </div>
         </div>
       </section>
       {

@@ -1,12 +1,12 @@
-import { MarketplaceHero, MarketplaceStore } from "@components/ui/marketplace"
+import { MarketplaceHero, MarketplaceOrders } from "@components/ui/marketplace"
 import { sanityClient } from "@lib/studio/sanity"
 import { coursesQuery } from "@lib/studio/query"
 
-export default function OwnedCourses({ courses }) {
+export default function OwnedCoursesPage({ courses }) {
   return (
     <>
       <MarketplaceHero />
-      <MarketplaceStore courses={courses} />
+      <MarketplaceOrders courses={courses} />
     </>
   )
 }
