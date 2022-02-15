@@ -29,7 +29,7 @@ export default function Store({ courses }) {
       </section>
       {
         selectedCourse &&
-        <OrderModal course={selectedCourse} onClose={resetSelectedCourse} />
+        <OrderModal course={selectedCourse} resetCourse={resetSelectedCourse} />
       }
     </>
   )

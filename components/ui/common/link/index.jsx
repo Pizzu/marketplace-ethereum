@@ -1,11 +1,10 @@
 import Link from "next/link"
 import { useRouter } from "next/router"
-import React from "react"
 
-export default function ActiveLink({ children, ...props }) {
+export default function CustomLink({ children, ...props }) {
   const { pathname } = useRouter()
-  let className = children.props.className || ""
-  
+  let className = ""
+
   if (pathname === props.href) {
     className = `${className} text-white font-bold text-xl`
   } else {
@@ -14,9 +13,9 @@ export default function ActiveLink({ children, ...props }) {
 
   return (
     <Link {...props} passHref>
-      {
-        React.cloneElement(children, { className })
-      }
+      <a className={className}>
+        { children }
+      </a>
     </Link>
   )
 }
