@@ -2,7 +2,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { urlFor } from "@lib/studio/sanity"
 import { borderVariants, backgroundVariants } from "@lib/utils/variations"
-import { Button } from "@components/ui/common"
+import { Button, Loader } from "@components/ui/common"
 
 export default function Card({ course, index, courseWalletInfo, onSelectedCourse }) {
 
@@ -36,7 +36,7 @@ export default function Card({ course, index, courseWalletInfo, onSelectedCourse
             </div>
             :
             isConnecting ?
-              <Button isDisabled={true} className={`${backgroundVariants[course.color]} text-white`}>Loading...</Button>
+              <Button isDisabled={true} className={`${backgroundVariants[course.color]} text-white`}><Loader>Loading...</Loader></Button>
               :
               isWalletConnected ?
                 <Button onClick={() => onSelectedCourse(course)} className={`${backgroundVariants[course.color]} text-white`}>Buy Course</Button>
