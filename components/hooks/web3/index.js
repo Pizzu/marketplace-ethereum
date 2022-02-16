@@ -1,6 +1,5 @@
 import { useHooks } from "@components/providers/web3";
 
-
 const enhanceHooks = (hookRes) => {
   return {
     ...hookRes,

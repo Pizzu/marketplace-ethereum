@@ -17,7 +17,7 @@ export default function MarketplaceStore({ courses }) {
 
   const purchaseCourse = ({ course, email, price }) => {
     console.log(course),
-      console.log(email)
+    console.log(email)
     console.log(price)
   }
 
