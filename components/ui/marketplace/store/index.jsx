@@ -6,7 +6,7 @@ import { useWeb3 } from "@components/providers"
 import { useState } from "react"
 
 export default function MarketplaceStore({ courses }) {
-
+  
   const { requireInstall } = useWeb3()
   const { isConnecting, isWalletConnected, network } = useWalletInfo()
   const courseWalletInfo = { requireInstall, isConnecting, isWalletConnected, network }
@@ -20,7 +20,7 @@ export default function MarketplaceStore({ courses }) {
     console.log(email)
     console.log(price)
   }
-
+  
   return (
     <>
       <section className="relative">

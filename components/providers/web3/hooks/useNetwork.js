@@ -38,7 +38,7 @@ export const handler = (web3, provider) => () => {
   const switchToTargetNetwork = useCallback(async () => {
     await provider.request({
       method: 'wallet_switchEthereumChain',
-      params: [{ chainId: "0x3"}],
+      params: [{ chainId: "0x539"}],
     });
   }, [provider])
 

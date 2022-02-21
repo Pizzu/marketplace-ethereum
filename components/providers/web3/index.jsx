@@ -32,6 +32,7 @@ export default function Web3Provider({ children }) {
       hooks: setupHooks(web3, provider),
       connect: async () => {
         if (provider) {
+          // await provider.request({method: 'eth_requestAccounts',})
           await web3Api.web3.eth.requestAccounts()
         }
       }
