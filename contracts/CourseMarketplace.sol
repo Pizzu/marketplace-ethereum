@@ -1,7 +1,12 @@
 // SPDX-License-Identifier: MIT
 pragma solidity >=0.4.22 <0.9.0;
 
-contract CourseMarketplace {
+import "./Owned.sol";
+
+/// @title CourseMarketplace
+/// @author Luca Lo Forte - Lo Forte Coding
+/// @notice CourseMarketplace is a contract that allows users to purchase online courses from the Marketeplace Ethereum Next JS Web app
+contract CourseMarketplace is Owned {
     enum State {
         Purchased,
         Activated,
@@ -15,24 +20,54 @@ contract CourseMarketplace {
         address owner; // 20
         State state; // 1
     }
+    
+    mapping(bytes32 => Course) private ownedCourses; //Mapping of courseHash to CourseData
+    mapping(uint256 => bytes32) private ownedCoursesHash; // Mapping courseId to courseHash
+    uint256 private totalOwnedCourses;
 
-    //Mapping of courseHash to CourseData
-    mapping(bytes32 => Course) private ownedCourses;
-    // Mapping courseId to courseHash
-    mapping(uint => bytes32) private ownedCourseHash;
+    /// Course has already been purchased by this user
+    error CourseOwner();
 
-    uint private totalOwnedCourses;
-
-    // courseID -> 022720b6-e598-40ee-9879-d9800c56bceb
-    // courseID hex -> 0x3032323732306236653539383430656539383739643938303063353662636562
-    // Address -> 0x5B38Da6a701c568545dCfcB03FcB875f56beddC4
-    // courseId hex + address -> 30323237323062366535393834306565393837396439383030633536626365625B38Da6a701c568545dCfcB03FcB875f56beddC4
-    // keccak256 -> 2f61d53bb8a08265112c9c825311f7e4fe977d42d140f7eb1bfdc92125fe712d
-
-    function purchaseCourse(bytes32 courseId) external payable {
+    function purchaseCourse(bytes32 courseId, bytes32 proof) external payable {
         // the course hash is gonna be an unique value -> the hash of the courseID + the sender address
         bytes32 courseHash = keccak256(abi.encodePacked(courseId, msg.sender));
-        uint id = totalOwnedCourses++;
-        ownedCourseHash[id] = courseHash;
+
+        if (userHasCourse(courseHash)) {
+            revert CourseOwner();
+        }
+
+        uint256 id = totalOwnedCourses++;
+        ownedCoursesHash[id] = courseHash;
+        ownedCourses[courseHash] = Course({
+            id: id,
+            price: msg.value,
+            proof: proof,
+            owner: msg.sender,
+            state: State.Purchased
+        });
+    }
+
+    function getCourseCount() external view returns (uint256) {
+        return totalOwnedCourses;
+    }
+
+    function getCourseHashAtIndex(uint256 index)
+        external
+        view
+        returns (bytes32)
+    {
+        return ownedCoursesHash[index];
+    }
+
+    function getCourseByHash(bytes32 courseHash)
+        external
+        view
+        returns (Course memory)
+    {
+        return ownedCourses[courseHash];
+    }
+
+    function userHasCourse(bytes32 courseHash) private view returns (bool) {
+        return ownedCourses[courseHash].owner == msg.sender;
     }
 }
