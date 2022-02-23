@@ -7,20 +7,27 @@ import { useState } from "react"
 
 export default function MarketplaceStore({ courses }) {
   
-  const { requireInstall } = useWeb3()
-  const { isConnecting, isWalletConnected, network } = useWalletInfo()
+  const { requireInstall, web3, contract } = useWeb3()
+  const { isConnecting, isWalletConnected, network, account } = useWalletInfo()
   const courseWalletInfo = { requireInstall, isConnecting, isWalletConnected, network }
 
   const [selectedCourse, setSelectedCourse] = useState(null)
   const onSelectedCourse = (course) => setSelectedCourse(course)
   const resetSelectedCourse = () => setSelectedCourse(null)
 
-  const purchaseCourse = ({ course, email, price }) => {
-    console.log(course),
-    console.log(email)
-    console.log(price)
+  const purchaseCourse = async ({ course, email, price }) => {
+    const courseId = course._id.replace(/-/g, "")
+    const courseIdHex = web3.utils.asciiToHex(courseId)
+    const emailHash = web3.utils.sha3(email)
+    const weiPrice = web3.utils.toWei(price)
+
+    try {
+      await contract.methods.purchaseCourse(courseIdHex, emailHash).send({from: account.data, value: weiPrice})
+    } catch {
+      console.log("Purcharse Course: Operation Failed")
+    }
   }
-  
+
   return (
     <>
       <section className="relative">

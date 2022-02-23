@@ -28,7 +28,7 @@ contract CourseMarketplace is Owned {
     /// Course has already been purchased by this user
     error CourseOwner();
 
-    function purchaseCourse(bytes32 courseId, bytes32 proof) external payable {
+    function purchaseCourse(bytes32 courseId, bytes32 emailHash) external payable {
         // the course hash is gonna be an unique value -> the hash of the courseID + the sender address
         bytes32 courseHash = keccak256(abi.encodePacked(courseId, msg.sender));
 
@@ -36,8 +36,10 @@ contract CourseMarketplace is Owned {
             revert CourseOwner();
         }
 
+        bytes32 proof = keccak256(abi.encodePacked(emailHash, courseHash));
         uint256 id = totalOwnedCourses++;
         ownedCoursesHash[id] = courseHash;
+        
         ownedCourses[courseHash] = Course({
             id: id,
             price: msg.value,

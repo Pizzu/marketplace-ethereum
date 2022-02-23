@@ -7,7 +7,7 @@ import { loadContract } from "@utils/loadContract"
 const Web3Context = createContext({})
 
 export default function Web3Provider({ children }) {
-
+  
   const [web3Api, setWeb3Api] = useState({ provider: null, web3: null, contract: null, isLoading: true })
   
   useEffect(() => {
