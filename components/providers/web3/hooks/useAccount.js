@@ -36,6 +36,7 @@ export const handler = (web3, provider) => () => {
     error,
     isAdmin: (data && adminAddresses[web3.utils.keccak256(data)]) ?? false,
     mutate, 
+    isValidating,
     ...rest 
   }
 }
