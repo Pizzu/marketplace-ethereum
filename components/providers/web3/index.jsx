@@ -2,6 +2,7 @@ import { createContext, useContext, useEffect, useMemo, useState } from "react"
 import Web3 from "web3"
 import detectEthereumProvider from "@metamask/detect-provider"
 import { setupHooks } from "./hooks/setupHooks"
+import { loadContract } from "@utils/loadContract"
 
 const Web3Context = createContext({})
 
@@ -14,7 +15,8 @@ export default function Web3Provider({ children }) {
       const provider = await detectEthereumProvider()
       if (provider) {
         const web3 = new Web3(provider)
-        setWeb3Api({provider, web3, contract: null, isLoading: false})
+        const contract = await loadContract("CourseMarketplace", web3)
+        setWeb3Api({provider, web3, contract, isLoading: false})
       } else {
         setWeb3Api((web3Api) => ({ ...web3Api, isLoading: false }))
         console.error("Please, install Metamask")
@@ -38,7 +40,7 @@ export default function Web3Provider({ children }) {
       }
     }
   }, [web3Api])
-
+  
   return (
     <Web3Context.Provider value={_web3Api}>
       {children}
