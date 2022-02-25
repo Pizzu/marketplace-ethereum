@@ -1,10 +1,11 @@
 import { MarketplaceNavigation } from "@components/ui/marketplace"
 import { CourseList, OwnedCourseCard } from "@components/ui/course"
-import { useWalletInfo } from "@components/hooks/web3"
+import { useOwnedCourses, useWalletInfo } from "@components/hooks/web3"
 
 export default function MarketplaceOrders({ courses }) {
 
-  const { isWalletConnected } = useWalletInfo()
+  const { isWalletConnected, account } = useWalletInfo()
+  const { ownedCourses } = useOwnedCourses(courses, account.data)
 
   return (
     <div className="relative">
