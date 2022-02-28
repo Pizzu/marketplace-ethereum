@@ -21,8 +21,8 @@ export const useNetwork = () => {
   }
 }
 
-export const useOwnedCourses = (courses, account) => {
-  const ownedCoursesRes = useHooks(hooks => hooks.useOwnedCourses)(courses, account)
+export const useOwnedCourses = (courses, account, isWalletConnected) => {
+  const ownedCoursesRes = useHooks(hooks => hooks.useOwnedCourses)(courses, account, isWalletConnected)
   return {
     ownedCourses: ownedCoursesRes
   }

@@ -53,19 +53,11 @@ contract CourseMarketplace is Owned {
         return totalOwnedCourses;
     }
 
-    function getCourseHashAtIndex(uint256 index)
-        external
-        view
-        returns (bytes32)
-    {
+    function getCourseHashAtIndex(uint256 index) external view returns (bytes32) {
         return ownedCoursesHash[index];
     }
 
-    function getCourseByHash(bytes32 courseHash)
-        external
-        view
-        returns (Course memory)
-    {
+    function getCourseByHash(bytes32 courseHash) external view returns (Course memory) {
         return ownedCourses[courseHash];
     }
 
