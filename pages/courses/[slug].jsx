@@ -1,13 +1,18 @@
 import { sanityClient } from "@lib/studio/sanity";
 import { courseQuery, coursesPath } from "@lib/studio/query";
 import { CourseHero, CourseKeyPoints, CourseCurriculum } from "@components/ui/course";
+import { useOwnedCourse, useWalletInfo } from "@components/hooks/web3";
 
 export default function CoursePage({ course }) {
+
+  const { isWalletConnected, account } = useWalletInfo()
+  const { ownedCourse } = useOwnedCourse(course, account.data, isWalletConnected)
+
   return (
     <>
       <CourseHero course={course} />
       <CourseKeyPoints skills={course.skills} color={course.color} />
-      <CourseCurriculum lectures={course.lectures} color={course.color} />
+      <CourseCurriculum lectures={course.lectures} color={course.color} locked={ownedCourse.data ? false : true} />
     </>
   )
 }

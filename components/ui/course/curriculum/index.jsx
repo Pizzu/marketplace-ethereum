@@ -1,9 +1,10 @@
 import { shadowVariants, backgroundVariants } from "@lib/utils/variations"
 
 export default function Curriculum({ lectures, locked=true, color }) {
+  console.log(locked)
   return (
     <section>
-      <div className="container px-60">
+      <div className="container px-52">
         <div className={`grid grid-cols-1 divide-white/40 divide-y backdrop-blur-[80px] py-6 last:pb-0 bg-black/20 rounded-md border-2 border-white/40 shadow-lg ${shadowVariants[color]}`}>
           <div className="px-8 grid grid-cols-2 pb-4">
             <h4 className="font-bold text-xl text-white/80">

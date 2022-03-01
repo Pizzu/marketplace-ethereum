@@ -28,6 +28,13 @@ export const useOwnedCourses = (courses, account, isWalletConnected) => {
   }
 }
 
+export const useOwnedCourse = (course, account, isWalletConnected) => {
+  const ownedCourseRes = useHooks(hooks => hooks.useOwnedCourse)(course, account, isWalletConnected)
+  return {
+    ownedCourse: ownedCourseRes
+  }
+}
+
 export const useWalletInfo = () => {
   const { account } = useAccount()
   const { network } = useNetwork()

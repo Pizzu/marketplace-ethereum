@@ -3,7 +3,7 @@ import { CourseList, OwnedCourseCard } from "@components/ui/course"
 import { useOwnedCourses, useWalletInfo } from "@components/hooks/web3"
 
 export default function MarketplaceOrders({ courses }) {
-
+  console.log(courses)
   const { isWalletConnected, account } = useWalletInfo()
   const { ownedCourses } = useOwnedCourses(courses, account.data, isWalletConnected)
 
