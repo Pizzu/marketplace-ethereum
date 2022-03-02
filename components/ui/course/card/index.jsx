@@ -1,12 +1,15 @@
 import Image from "next/image"
 import Link from "next/link"
 import { urlFor } from "@lib/studio/sanity"
-import { borderVariants, backgroundVariants } from "@lib/utils/variations"
+import { borderVariants, backgroundVariants, statusColors } from "@lib/utils/variations"
 import { Button, Loader } from "@components/ui/common"
+import { useOwnedCourse } from "@components/hooks/web3"
 
 export default function Card({ course, index, courseWalletInfo, onSelectedCourse }) {
 
-  const { requireInstall, isConnecting, isWalletConnected, network } = courseWalletInfo
+  const { requireInstall, isConnecting, isWalletConnected, network, account } = courseWalletInfo
+  const { ownedCourse } = useOwnedCourse(course, account.data, isWalletConnected)
+  const courseState = ownedCourse.data?.state.charAt(0).toUpperCase() + ownedCourse.data?.state.slice(1) || null
 
   return (
     <div className={`${index % 2 == 0 ? "pl-6" : "pr-6"} relative mb-14`}>
@@ -20,7 +23,9 @@ export default function Card({ course, index, courseWalletInfo, onSelectedCourse
       <div className="absolute max-w-lg -bottom-12 right-0 backdrop-blur-[80px] bg-black/20 grid grid-flow-row gap-6 items-stretch px-4 py-6 rounded-md border-2 border-white/40">
         <div className="grid grid-flow-col auto-cols-max gap-4 items-center">
           <p className="text-base font-bold text-white">{course.type}</p>
-          <span className="bg-emerald-500 text-white text-sm px-3 py-1 rounded-full">Status</span>
+          {ownedCourse.data && (
+            <span className={`${statusColors[ownedCourse.data.state]} text-white text-sm font-medium px-3 py-1 rounded-full`}>{courseState}</span>
+          )}
         </div>
         <div>
           <Link href={`/courses/${course.slug.current}`} passHref>
@@ -39,7 +44,14 @@ export default function Card({ course, index, courseWalletInfo, onSelectedCourse
               <Button isDisabled={true} className={`${backgroundVariants[course.color]} text-white`}><Loader>Loading...</Loader></Button>
               :
               isWalletConnected ?
-                <Button onClick={() => onSelectedCourse(course)} className={`${backgroundVariants[course.color]} text-white`}>Buy Course</Button>
+                ownedCourse.data ?
+                  <Link href={`/courses/${course.slug.current}`} passHref>
+                    <a>
+                      <Button className={`${backgroundVariants[course.color]} text-white justify-self-start`}>Watch Course</Button>
+                    </a>
+                  </Link>
+                  :
+                  <Button onClick={() => onSelectedCourse(course)} className={`${backgroundVariants[course.color]} text-white`}>Buy Course</Button>
                 :
                 <div>
                   <Button isDisabled={true} className={`${backgroundVariants[course.color]} text-white`}>Buy Course</Button>

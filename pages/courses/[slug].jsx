@@ -10,7 +10,7 @@ export default function CoursePage({ course }) {
 
   return (
     <>
-      <CourseHero course={course} />
+      <CourseHero course={course} locked={ownedCourse.data ? false : true}/>
       <CourseKeyPoints skills={course.skills} color={course.color} />
       <CourseCurriculum lectures={course.lectures} color={course.color} locked={ownedCourse.data ? false : true} />
     </>

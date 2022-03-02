@@ -8,8 +8,7 @@ import "./Owned.sol";
 /// @notice CourseMarketplace is a contract that allows users to purchase online courses from the Marketeplace Ethereum Next JS Web app
 contract CourseMarketplace is Owned {
     enum State {
-        Purchased,
-        Activated
+        Purchased
     }
 
     struct Course {
@@ -27,7 +26,7 @@ contract CourseMarketplace is Owned {
     /// Course has already been purchased by this user
     error CourseOwner();
 
-    function purchaseCourse(bytes32 courseId, bytes32 emailHash) external payable {
+    function purchaseCourse(bytes32 courseId) external payable {
         // the course hash is gonna be an unique value -> the hash of the courseID + the sender address
         bytes32 courseHash = keccak256(abi.encodePacked(courseId, msg.sender));
 
@@ -35,14 +34,13 @@ contract CourseMarketplace is Owned {
             revert CourseOwner();
         }
 
-        bytes32 proof = keccak256(abi.encodePacked(emailHash, courseHash));
         uint256 id = totalOwnedCourses++;
         ownedCoursesHash[id] = courseHash;
         
         ownedCourses[courseHash] = Course({
             id: id,
             price: msg.value,
-            proof: proof,
+            proof: courseHash,
             owner: msg.sender,
             state: State.Purchased
         });

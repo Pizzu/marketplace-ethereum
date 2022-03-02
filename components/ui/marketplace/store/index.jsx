@@ -9,20 +9,21 @@ export default function MarketplaceStore({ courses }) {
   
   const { requireInstall, web3, contract } = useWeb3()
   const { isConnecting, isWalletConnected, network, account } = useWalletInfo()
-  const courseWalletInfo = { requireInstall, isConnecting, isWalletConnected, network }
+  const courseWalletInfo = { requireInstall, isConnecting, isWalletConnected, network, account }
 
   const [selectedCourse, setSelectedCourse] = useState(null)
+  const [reloadCourses, setReloadCourses] = useState(false)
   const onSelectedCourse = (course) => setSelectedCourse(course)
   const resetSelectedCourse = () => setSelectedCourse(null)
 
-  const purchaseCourse = async ({ course, email, price }) => {
+  const purchaseCourse = async ({ course, price }) => {
     const courseId = course._id.replace(/-/g, "")
     const courseIdHex = web3.utils.asciiToHex(courseId)
-    const emailHash = web3.utils.sha3(email)
     const weiPrice = web3.utils.toWei(price)
 
     try {
-      await contract.methods.purchaseCourse(courseIdHex, emailHash).send({from: account.data, value: weiPrice})
+      await contract.methods.purchaseCourse(courseIdHex).send({from: account.data, value: weiPrice})
+      setReloadCourses(!reloadCourses)
     } catch {
       console.log("Purcharse Course: Operation Failed")
     }

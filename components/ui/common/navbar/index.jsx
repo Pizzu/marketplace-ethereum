@@ -19,9 +19,6 @@ export default function Navbar() {
             <Link href="/marketplace" passHref>
               <button className="text-white text-lg font-bold">Marketplace</button>
             </Link>
-            <Link href="/blog" passHref>
-              <button className="text-white text-lg font-bold">Blog</button>
-            </Link>
             {isLoading ?
               <Button isDisabled={true} className="px-4 py-3 text-white border-2 border-white">Connecting...</Button>
               : web3 ?

@@ -1,7 +1,10 @@
 import Image from "next/image"
+import Link from "next/link"
 import { urlFor } from "@lib/studio/sanity"
 import { borderVariants, backgroundVariants } from "@lib/utils/variations"
-export default function Hero({ course }) {
+import { Button } from "@components/ui/common"
+
+export default function Hero({ course, locked }) {
   return (
     <section className="relative">
       <div className={`absolute w-80 h-80 top-20 -left-36 -z-10 rounded-full ${backgroundVariants[course.color]} blur-[150px]`}></div>
@@ -15,6 +18,13 @@ export default function Hero({ course }) {
           <div className="text-white">
             <h1 className="text-6xl font-bold mb-5">{course.title}</h1>
             <p className="text-lg max-w-sm mb-8">{course.description}</p>
+            {!locked && (
+              <Link href={"#curriculum"} passHref>
+                <a>
+                  <Button className={`${backgroundVariants[course.color]} text-white`}>Watch Now</Button>
+                </a>
+              </Link>
+            )}
           </div>
           <div className="pr-6 relative">
             <div className="relative w-[26rem] h-[32rem] ml-auto">

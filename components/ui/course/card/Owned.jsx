@@ -4,6 +4,7 @@ import { shadowVariants, backgroundVariants, statusColors } from "@lib/utils/var
 
 export default function OwnedCourseCard({ course }) {
   const courseState = course.state.charAt(0).toUpperCase() + course.state.slice(1)
+  
   return (
     <div className={`backdrop-blur-[80px] bg-black/20 divide-y grid grid-flow-row gap-2 rounded-md border-2 border-white/40 shadow-xl ${shadowVariants[course.color]}`}>
       <div className="px-6 py-8">
