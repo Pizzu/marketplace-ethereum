@@ -22,14 +22,14 @@ export const useNetwork = () => {
 }
 
 export const useOwnedCourses = (courses, account, isWalletConnected) => {
-  const ownedCoursesRes = useHooks(hooks => hooks.useOwnedCourses)(courses, account, isWalletConnected)
+  const ownedCoursesRes = enhanceHooks(useHooks(hooks => hooks.useOwnedCourses)(courses, account, isWalletConnected))
   return {
     ownedCourses: ownedCoursesRes
   }
 }
 
 export const useOwnedCourse = (course, account, isWalletConnected) => {
-  const ownedCourseRes = useHooks(hooks => hooks.useOwnedCourse)(course, account, isWalletConnected)
+  const ownedCourseRes = enhanceHooks(useHooks(hooks => hooks.useOwnedCourse)(course, account, isWalletConnected))
   return {
     ownedCourse: ownedCourseRes
   }

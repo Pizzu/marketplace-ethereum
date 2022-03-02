@@ -1,7 +1,6 @@
 export const COURSE_STATE = {
   0: "purchased",
-  1: "activated",
-  2: "deactivated"
+  1: "activated"
 }
 
 export const normalizeOwnedCourse = (web3) => (course, ownedCourse) => {

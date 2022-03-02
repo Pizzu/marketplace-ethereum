@@ -9,8 +9,7 @@ import "./Owned.sol";
 contract CourseMarketplace is Owned {
     enum State {
         Purchased,
-        Activated,
-        Deactivated
+        Activated
     }
 
     struct Course {
