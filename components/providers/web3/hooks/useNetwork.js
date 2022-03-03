@@ -24,7 +24,7 @@ export const handler = (web3, provider) => () => {
       return currentNetwork
     }
   )
-
+ 
   useEffect(() => {
     const mutator = (chainId) => mutate(NETWORKS[parseInt(chainId, 16)])
     provider?.on("chainChanged", mutator)
@@ -38,7 +38,7 @@ export const handler = (web3, provider) => () => {
   const switchToTargetNetwork = useCallback(async () => {
     await provider.request({
       method: 'wallet_switchEthereumChain',
-      params: [{ chainId: "0x539"}],
+      params: [{ chainId: web3.utils.numberToHex(process.env.NEXT_PUBLIC_TARGET_CHAIN_ID)}],
     });
   }, [provider])
 

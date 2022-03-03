@@ -37,3 +37,6 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# Infura
+keys.json
