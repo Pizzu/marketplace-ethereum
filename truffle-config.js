@@ -13,7 +13,7 @@ module.exports = {
       provider: () =>
         new HDWalletProvider({
           privateKeys: [keys.PRIVATE_ACCOUNT_KEY],
-          providerOrUrl: `https://ropsten.infura.io/v3/${keys.INFURA_PROJECT_ID}`,
+          providerOrUrl: `wss://ropsten.infura.io/ws/v3/${keys.INFURA_PROJECT_ID}`,
         }),
       network_id: "3",
       gas: 5500000, // Gas Limit, how much gas we are willing to spend

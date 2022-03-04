@@ -7691,6 +7691,12 @@
     "version": "0.8.10+commit.fc410830.Emscripten.clang"
   },
   "networks": {
+    "3": {
+      "events": {},
+      "links": {},
+      "address": "0x990565bC77E4C33CD270fa3f593cF4239cdB0EB3",
+      "transactionHash": "0xb08429a909896b89c1ed5a73c9f77c5fa1d83b4160c2e44b4410a9157aced38c"
+    },
     "5777": {
       "events": {},
       "links": {},
@@ -7699,7 +7705,7 @@
     }
   },
   "schemaVersion": "3.4.3",
-  "updatedAt": "2022-03-02T15:46:50.932Z",
+  "updatedAt": "2022-03-04T11:35:09.288Z",
   "networkType": "ethereum",
   "devdoc": {
     "author": "Luca Lo Forte - Lo Forte Coding",

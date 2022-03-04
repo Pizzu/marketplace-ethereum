@@ -4,6 +4,7 @@ import { OrderModal } from "@components/ui/order"
 import { useWalletInfo } from "@components/hooks/web3"
 import { useWeb3 } from "@components/providers"
 import { useState } from "react"
+import { withToast } from "@utils/toast";
 
 export default function MarketplaceStore({ courses }) {
   
@@ -12,7 +13,6 @@ export default function MarketplaceStore({ courses }) {
   const courseWalletInfo = { requireInstall, isConnecting, isWalletConnected, network, account }
 
   const [selectedCourse, setSelectedCourse] = useState(null)
-  const [reloadCourses, setReloadCourses] = useState(false)
   const onSelectedCourse = (course) => setSelectedCourse(course)
   const resetSelectedCourse = () => setSelectedCourse(null)
 
@@ -21,11 +21,15 @@ export default function MarketplaceStore({ courses }) {
     const courseIdHex = web3.utils.asciiToHex(courseId)
     const weiPrice = web3.utils.toWei(price)
 
+    withToast(_purchaseCourse(courseIdHex, account.data, weiPrice))
+  }
+
+  const _purchaseCourse = async (courseIdHex, account, value) => {
     try {
-      await contract.methods.purchaseCourse(courseIdHex).send({from: account.data, value: weiPrice})
-      setReloadCourses(!reloadCourses)
-    } catch {
-      console.log("Purcharse Course: Operation Failed")
+      const result = await contract.methods.purchaseCourse(courseIdHex).send({from: account, value})
+      return result
+    } catch(error) {
+      throw new Error(error.message)
     }
   }
 

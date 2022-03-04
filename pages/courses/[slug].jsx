@@ -10,7 +10,7 @@ export default function CoursePage({ course }) {
 
   return (
     <>
-      <CourseHero course={course} locked={ownedCourse.data ? false : true}/>
+      <CourseHero course={course} locked={ownedCourse.data ? false : true} />
       <CourseKeyPoints skills={course.skills} color={course.color} />
       <CourseCurriculum lectures={course.lectures} color={course.color} locked={ownedCourse.data ? false : true} />
     </>
@@ -19,7 +19,7 @@ export default function CoursePage({ course }) {
 
 export async function getStaticProps({ params }) {
   const { slug } = params
-  
+
   const course = await sanityClient.fetch(courseQuery, { slug })
 
   if (!course) {
@@ -34,7 +34,7 @@ export async function getStaticProps({ params }) {
       revalidate: 3000
     }
   }
-} 
+}
 
 export async function getStaticPaths() {
   const paths = await sanityClient.fetch(coursesPath)
