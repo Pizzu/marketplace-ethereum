@@ -7,8 +7,8 @@ node_modules
 
 #ENV
 .env.local
-.env.development
-.env.production
+# .env.development
+# .env.production
 
 # testing
 /coverage
